@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <div className="flex flex-wrap m-2">
       {
-        productList.map((prod) => <ProductCard key={prod.id} product={prod} />)
+        Object.values(productList).map((prod) => <ProductCard key={prod.id} product={prod} />)
       }
     </div>
   )

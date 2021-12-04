@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div>Price: <span className="card__price">{(product.price * rates[currencyName]).toFixed(2)} <span className="currency">{currencyName}</span></span></div>
       <div>
-        <button type="button" className="border rounded-md p-1" onClick={() => dispatch(addItem(product.id))}>Add</button>
+        <button type="button" className="border rounded-md p-1" onClick={() => dispatch(addItem(product.id))}>Buy</button>
         <span className="card__product-amount ml-2">{list[product.id]?.amount}</span>
       </div>
     </div>
