@@ -24,7 +24,7 @@ const Cart = () => {
     <div className="flex flex-col">
       <Head title="Cart" />
       <Header caption="SkillCrucial 5 Shop" />
-      <Table data={Object.keys(productInCart)} />
+      <Table data={Object.values(productInCart)} />
       <div id="total-amount">{totalAmount}</div>
       <div id="total-price">{(totalPrice * rates[currencyName]).toFixed(2)} {currencyName}</div>
     </div>

@@ -22,7 +22,9 @@ const Header = ({ caption }) => {
       <Link to="/cart" className="text-white">
         <div>Cart</div>
         <div id="order-count">{totalAmount}</div>
-        <div id="order-price">{(totalPrice * rates[currencyName]).toFixed(2)} {currencyName}</div>
+        <div id="order-price">
+          {(Number.isNaN(totalPrice * rates[currencyName]) ? 0 : totalPrice * rates[currencyName]).toFixed(2)} {currencyName}
+        </div>
       </Link>
     </div>
   )

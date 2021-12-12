@@ -5,15 +5,14 @@ import { changeItemAmount, removeCurrentItem } from '../../redux/reducers/cart'
 
 const TableRow = ({ id, n }) => {
   const dispatch = useDispatch()
-  const product = useSelector((store) => store.products.list)
   const productInCart = useSelector((s) => s.cart.list)
   const { rates, currencyName } = useSelector((store) => store.settings)
   return (
     <tr>
       <td>{n}</td>
-      <td className="product__image w-4"><img src={product[id].image} alt={product[id].title} /></td>
-      <td className="product__title">{product[id].title}</td>
-      <td className="product__price">{(product[id].price * rates[currencyName]).toFixed(2)} {currencyName}</td>
+      <td className="product__image w-4"><img src={productInCart[id].image} alt={productInCart[id].title} /></td>
+      <td className="product__title">{productInCart[id].title}</td>
+      <td className="product__price">{(productInCart[id].price * rates[currencyName]).toFixed(2)} {currencyName}</td>
       <td className="product__amount">
         <div className="custom-number-input h-10 w-32">
           <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
@@ -37,7 +36,7 @@ const TableRow = ({ id, n }) => {
           </div>
         </div>
       </td>
-      <td className="product__product__total_price">{(product[id].price * rates[currencyName] * productInCart[id].amount).toFixed(2)} {currencyName}</td>
+      <td className="product__product__total_price">{(productInCart[id].price * rates[currencyName] * productInCart[id].amount).toFixed(2)} {currencyName}</td>
       <td>
         <button
           type="button"
