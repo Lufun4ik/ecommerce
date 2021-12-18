@@ -14,6 +14,7 @@ const ButtonGroup = () => {
       dispatch(sortProducts(sortType, sort[sortType]))
     }
   }
+
   return (
     <>
       <div className="inline-flex shadow-sm rounded-md" role="group">

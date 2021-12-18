@@ -32,14 +32,42 @@ export const sortProductsList = (arrayOfProducts, sortType, direction) => {
   }
 }
 
-export const getRates = () => {
+function rateChecker() {
+  let ratesRequestDate = 0
+  const msAtHour = 1000 * 60 * 60 // 1 Hour
+  let currency = {}
+  return {
+    checkDate: (dateMs = 0) => (ratesRequestDate + msAtHour) <= dateMs,
+    setRateDate: (dateMs = 0) => {
+      ratesRequestDate = dateMs
+    },
+    setCurrency: (newCurrency = {}) => {
+      currency = { ...newCurrency }
+    },
+    getRates: () => currency
+  }
+}
+
+const myRates = rateChecker()
+
+export const getRates = async () => {
   const url = 'https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD'
   const mockRates = {
     "CAD": 1.3,
     "EUR": 0.9,
     "USD": 1
   }
-  return axios(url)
-    .then(({data}) => data.rates)
-    .catch(() => mockRates)
+
+  const date = +new Date()
+
+  if (myRates.checkDate(date)) {
+    console.log('Wait data from exchange API...')
+    await axios(url)
+      .then(({ data }) => data.rates)
+      .then((cur) => myRates.setCurrency(cur))
+      .catch(() => mockRates)
+    myRates.setRateDate(date)
+  }
+
+  return myRates.getRates()
 }

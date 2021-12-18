@@ -6,15 +6,20 @@ const initialState = {
   list: {}
 }
 
+function getObjectFromArray(list) {
+  return list.reduce((acc, rec) => {
+    acc[rec.id] = rec
+    acc[rec.id].image = `https://source.unsplash.com/800x600/?${/\w+(?=\s)/gi.exec(rec.title)}`
+    return acc
+  }, {})
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCTS: {
       return {
         ...state,
-        list: action.payload.reduce((acc, rec) => {
-          acc[rec.id] = rec
-          return acc
-        }, {})
+        list: getObjectFromArray(action.payload)
       }
     }
     default:
