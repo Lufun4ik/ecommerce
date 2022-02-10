@@ -1,8 +1,8 @@
 {
-  "name": "mern-boilerplate",
+  "name": "my-boilerplate",
   "version": "1.0.1",
   "main": "index.js",
-  "author": "VitalyK",
+  "author": "KirillK",
   "license": "MIT",
   "scripts": {
     "dev": "clear & yarn run watch:server & yarn run watch:client",
