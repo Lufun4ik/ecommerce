@@ -8,7 +8,7 @@ const Main = () => {
   return (
     <div className="flex flex-col">
       <Head title="Main" />
-      <Header caption="SkillCrucial 5 Shop" />
+      <Header caption="MyShop" />
       <Products />
     </div>
   )
